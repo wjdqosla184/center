@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>전국 치매안심센터</title>
 
-  <!-- 글꼴 -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"/>
 
   <style>
@@ -15,7 +14,7 @@
     select{width:100%;padding:14px 16px;font-size:16px;border:1px solid #999;border-radius:4px;}
     .content{display:flex;gap:32px;margin-top:32px;}
 
-    /* 목록 */
+    
     #list{width:50%;display:flex;flex-direction:column;gap:20px;min-height:420px;}
     .card{border:1px solid #333;padding:18px 20px;border-radius:4px;cursor:pointer;transition:.2s;} 
     .card:hover{background:#f5f5f5;}
@@ -23,13 +22,12 @@
     .phone{margin-top:4px;font-size:15px;}
     .icon{color:#c62828;margin-right:4px;}
 
-    /* 지도 */
+    
     .map-wrap{flex:1;display:flex;flex-direction:column;gap:12px;}
     .map-wrap h3{text-align:center;font-size:18px;font-weight:700;border:1px solid #999;padding:8px 0;}
     #map{flex:1;min-height:420px;border:1px solid #999;}
   </style>
 
-  <!-- Kakao 지도 SDK : 본인 JavaScript 키로 교체 -->
   <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=081224eb759cb130283259dcbd3e4a99&libraries=services"></script>
   <script defer src="center.js"></script>
 </head>
@@ -37,7 +35,7 @@
   <main>
     <h2>시·도 선택</h2>
     <select id="provinceSelect">
-      <!-- 고정 시·도 목록 -->
+     
       <option value="">시·도 선택</option>
       <option>서울특별시</option>
       <option>부산광역시</option>
