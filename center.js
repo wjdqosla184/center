@@ -26,8 +26,8 @@ let map, marker, geocoder; // Kakao 지도
 
 // ---------------- 초기 ---------------- 
 document.addEventListener("DOMContentLoaded", async () => {
-  await loadCenters();            // 데이터 ↓
-  initMap();                      // 지도 ↓
+  await loadCenters();            // 데이터 
+  initMap();                      // 지도 
   document.getElementById("provinceSelect")
           .addEventListener("change", renderByProvince);
 });
@@ -66,7 +66,7 @@ function initMap() {
   geocoder = new kakao.maps.services.Geocoder();
 }
 
-// 시·도 선택 → 목록·지도 ---------------------------------------- 
+// 시·도 선택 목록·지도 ---------------------------------------- 
 function renderByProvince() {
   const prov = document.getElementById("provinceSelect").value;
   // 주소 앞 단어(시·도) 로 시작하는 레코드만 추림
