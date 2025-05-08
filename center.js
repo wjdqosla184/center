@@ -1,15 +1,10 @@
-/* ------------------------------------------------------------------
-   전국 치매안심센터  (보건복지부: tn_pubr_public_imbclty_cnter_api)
-   - 공공데이터포털 Decoding 인증키 사용
-   - 호출 예: https://api.data.go.kr/openapi/tn_pubr_public_imbclty_cnter_api
-     ?serviceKey={KEY}&pageNo=1&numOfRows=500&type=json
------------------------------------------------------------------- */
+
 const DATA_KEY = "HgzvYuKdNpoFiw5vdD6y06tR2gI5TNW5J8u1Ktjvb58HLnvkDwW7iW6e0YUYR0IIR/pVEKsbKSWduyM+49g==";
 const ENDPOINT = "https://api.data.go.kr/openapi/tn_pubr_public_imbclty_cnter_api";
 const QUERY    = `?serviceKey=${encodeURIComponent(DATA_KEY)}&pageNo=1&numOfRows=1000&type=json`;
 const ORIGIN   = ENDPOINT + QUERY;
 
-/* ---- CORS 프록시 3단 폴백 ---- */
+// ---- CORS 프록시 3단 폴백 ---- 
 async function fetchViaProxy(url) {
   const tryUrls = [
     `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
@@ -25,11 +20,11 @@ async function fetchViaProxy(url) {
   throw new Error("CORS 프록시 모두 실패");
 }
 
-/* ---------------- 전역 ---------------- */
+// ---------------- 전역 ----------------
 let centers = [];          // 전체 원본
 let map, marker, geocoder; // Kakao 지도
 
-/* ---------------- 초기 ---------------- */
+// ---------------- 초기 ---------------- 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadCenters();            // 데이터 ↓
   initMap();                      // 지도 ↓
@@ -37,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           .addEventListener("change", renderByProvince);
 });
 
-/* 1) 데이터 로딩 ---------------------------------------------------- */
+// 데이터 로딩 ----------------------------------------------------
 async function loadCenters() {
   try {
     const res  = await fetchViaProxy(ORIGIN);
@@ -55,7 +50,7 @@ async function loadCenters() {
   }
 }
 
-/* 2) Kakao 지도 ---------------------------------------------------- */
+// Kakao 지도 ----------------------------------------------------
 function initMap() {
   map = new kakao.maps.Map(document.getElementById("map"), {
     center: new kakao.maps.LatLng(36.5, 127.5),
@@ -71,7 +66,7 @@ function initMap() {
   geocoder = new kakao.maps.services.Geocoder();
 }
 
-/* 3) 시·도 선택 → 목록·지도 ---------------------------------------- */
+// 시·도 선택 → 목록·지도 ---------------------------------------- 
 function renderByProvince() {
   const prov = document.getElementById("provinceSelect").value;
   // 주소 앞 단어(시·도) 로 시작하는 레코드만 추림
@@ -84,7 +79,7 @@ function renderByProvince() {
   if (list.length) moveToCenter(list[0]);
 }
 
-/* 목록 그리기 */
+//목록 그리기
 function renderList(arr) {
   const wrap = document.getElementById("list");
   wrap.innerHTML = "";
@@ -106,7 +101,7 @@ function renderList(arr) {
   });
 }
 
-/* 지도 포커스 */
+// 지도 포커스
 function moveToCenter(c) {
   const lat = parseFloat(c.latitude  || c.lat || c.위도);
   const lng = parseFloat(c.longitude || c.lng || c.경도);
